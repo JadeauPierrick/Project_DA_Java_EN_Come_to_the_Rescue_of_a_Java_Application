@@ -3,41 +3,50 @@ package com.hemebiotech.analytics;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class AnalyticsCounter {
-	private static int headacheCount = 0;	// initialize to 0
-	private static int rashCount = 0;		// initialize to 0
-	private static int pupilCount = 0;		// initialize to 0
-	
+
+
 	public static void main(String args[]) throws Exception {
-		// first get input
-		BufferedReader reader = new BufferedReader (new FileReader("/Users/jacquesgrellier/Desktop/Formation Développeur JAVA/deuxieme_projet/Project02Eclipse/symptoms.txt"));
-		String line = reader.readLine();
 
-		int i = 0;	// set i to 0
-		int headCount = 0;	// counts headaches
-		while (line != null) {
-			i++;	// increment i
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			}
-			else if (line.equals("rush")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
+		try {
+			// Etape 1 : Lire le fichier symptoms.txt (et mise en mémoire dans une liste
+			List<String> lines = Files.readAllLines(Paths.get("/Users/jacquesgrellier/Desktop/Formation Développeur JAVA/deuxieme_projet/Project02Eclipse/symptoms.txt"));
 
-			line = reader.readLine();	// get another symptom
+			// Etape 2 : Parcourir le fichier en comptant les symptômes avec la map (HasMap ou TreeMap)
+			Map<String, Long> count = new HashMap<>();
+			for (String line : lines) {
+
+				if (count.containsKey(line)) {
+					count.put(line, count.get(line) + 1);
+				} else {
+					count.put(line, 1L);
+				}
+			}
+			// Etape 3 : Ranger dans l'ordre alphabétique les symptômes
+			List<String> sort = count.entrySet()
+					.stream()
+					.sorted(Map.Entry.comparingByKey())
+					.map(entry -> entry.getKey() + " = " + entry.getValue())
+					.collect(Collectors.toList());
+
+			// Etape 4 : Ecrire le résultat dans le fichier "result.out"
+			Files.write(Paths.get("result.out"), sort);
+
 		}
-		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
+
+		catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
