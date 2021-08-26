@@ -19,6 +19,5 @@ public class AnalyticsCounter {
 	public static void main(String[] args) throws IOException {
 
 		ReadSymptomDataFromFile newRead = new ReadSymptomDataFromFile();
-		newRead.filepath =
-	}
+		newRead.filepath = "Openclassrooms";
 }
