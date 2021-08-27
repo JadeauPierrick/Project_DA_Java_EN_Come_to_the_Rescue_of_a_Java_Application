@@ -7,11 +7,19 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CountSymptomData {
+    public ISymptomReader iSymptomReader;
 
-    public List<String> counting (ISymptomReader iSymptomReader) {
+    public CountSymptomData(ISymptomReader iSymptomReader) {
+        this.iSymptomReader = iSymptomReader;
+    }
+
+
+
+    public List<String> count(){
+
 
         Map<String, Long> count = new HashMap<>();
-        for (String line : iSymptomReader.getSymptoms()) {
+        for (String line : this.iSymptomReader.getSymptoms()) {
 
 
             if (count.containsKey(line)) {
@@ -27,7 +35,7 @@ public class CountSymptomData {
                 .map(entry -> entry.getKey() + " = " + entry.getValue())
                 .collect(Collectors.toList());
 
-        return count;
+        return sort;
     }
 
 }
