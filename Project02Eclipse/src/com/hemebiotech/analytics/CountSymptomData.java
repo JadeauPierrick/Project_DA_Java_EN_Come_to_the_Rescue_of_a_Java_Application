@@ -1,10 +1,11 @@
 package com.hemebiotech.analytics;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+
 
 public class CountSymptomData {
     public ISymptomReader iSymptomReader;
@@ -13,9 +14,14 @@ public class CountSymptomData {
         this.iSymptomReader = iSymptomReader;
     }
 
+    /**
+     * Starting the counting process with the new HashMap
+     * Then sorting the result with the sort List
+     *
+     * @return Alphabetically sorted list
+     */
 
-
-    public List<String> count(){
+    public List<String> countList(){
 
 
         Map<String, Long> count = new HashMap<>();
