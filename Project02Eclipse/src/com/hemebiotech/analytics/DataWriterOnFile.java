@@ -13,7 +13,6 @@ public class DataWriterOnFile {
 
     private String fileway;
     private Path path;
-    private String content;
 
     public DataWriterOnFile(String fileway) {
         this.fileway = fileway;
@@ -24,8 +23,7 @@ public class DataWriterOnFile {
         try {
 
             path = Paths.get(fileway);
-            content = "";
-            Files.write(path, String.format(content).getBytes());
+            Files.write(path, data);
 
         } catch (IOException e) {
             e.printStackTrace();
