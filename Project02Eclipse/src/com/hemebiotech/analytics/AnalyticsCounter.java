@@ -23,7 +23,7 @@ public class AnalyticsCounter {
 			// Etape 1 : Lire le fichier symptoms.txt (et mise en mémoire dans une liste
 			List<String> lines = Files.readAllLines(Paths.get("/Users/jacquesgrellier/Desktop/Formation Développeur JAVA/deuxieme_projet/Project02Eclipse/symptoms.txt"));
 
-			// Etape 2 : Parcourir le fichier en comptant les symptômes avec la map (HasMap ou TreeMap)
+			// Etape 2 : Parcourir le fichier en comptant les symptômes avec la map (HashMap)
 			Map<String, Long> count = new HashMap<>();
 			for (String line : lines) {
 
