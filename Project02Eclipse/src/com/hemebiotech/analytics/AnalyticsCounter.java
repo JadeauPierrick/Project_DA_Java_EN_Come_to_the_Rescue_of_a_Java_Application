@@ -2,6 +2,10 @@ package com.hemebiotech.analytics;
 
 import java.io.IOException;
 
+/**
+ * This function is the entry point of our program
+ *
+ */
 
 public class AnalyticsCounter {
 
