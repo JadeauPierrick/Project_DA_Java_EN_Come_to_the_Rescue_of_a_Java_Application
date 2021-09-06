@@ -6,23 +6,27 @@ import java.util.Properties;
 
 public class FileProperties {
 
-    private String file;
+    private final String file = "Project02Eclipse/src/application.properties";
 
-    public FileProperties(String file) {
-        this.file = file;
-    }
+    private String value;
 
-    public void displayProperties(String key) {
+    public String displayProperties(String key) {
+
+
+        if (file != null)
 
         try {
 
             Properties prop = new Properties();
             prop.load(new FileInputStream(file));
 
-            System.out.println(prop.getProperty(key));
+            value = prop.getProperty(key);
+
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    return value;
     }
 }

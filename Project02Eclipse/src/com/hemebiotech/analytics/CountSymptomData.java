@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 
 public class CountSymptomData {
+
     public ISymptomReader iSymptomReader;
 
     public CountSymptomData(ISymptomReader iSymptomReader) {

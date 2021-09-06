@@ -7,13 +7,12 @@ public class AnalyticsCounter {
 
 	public static void main(String[] args) throws IOException {
 
-		ISymptomReader newRead = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+		FileProperties newFileIn = new FileProperties();
+		ISymptomReader newRead = new ReadSymptomDataFromFile(newFileIn.displayProperties("entrance"));
 		CountSymptomData newCount = new CountSymptomData(newRead);
-		DataWriterOnFile newData = new DataWriterOnFile("result.out");
+		FileProperties newFileOut = new FileProperties();
+		DataWriterOnFile newData = new DataWriterOnFile(newFileOut.displayProperties("exit"));
 		newData.write(newCount.countList());
 
-		FileProperties newProperties = new FileProperties("result.out");
-		newProperties.displayProperties("fever");
 	}
 }
-
