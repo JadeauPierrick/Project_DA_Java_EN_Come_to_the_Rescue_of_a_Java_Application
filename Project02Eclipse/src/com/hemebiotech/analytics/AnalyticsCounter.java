@@ -10,7 +10,7 @@ import java.io.IOException;
 
 		public static void main(String[] args) throws IOException {
 
-			FileProperties newFileIn = new FileProperties();
+			FileProperties newFileIn = new FileProperties();;
 			ISymptomReader newRead = new ReadSymptomDataFromFile(newFileIn.displayProperties("entrance"));
 			CountSymptomData newCount = new CountSymptomData(newRead);
 			FileProperties newFileOut = new FileProperties();
